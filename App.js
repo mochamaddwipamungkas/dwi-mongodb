@@ -16,4 +16,5 @@ app.use((req, res, next) => {
         message: 'Resourse ' + req.originalUrl + ' Not Found'
     })
 })
-app.listen(3000, () => console.log('Server: http://localhost:3000'))
+// app.listen(3000, () => console.log('Server: http://localhost:3000'))
+app.listen(3000, () => console.log('Server: https://dwi-expressjs.herokuapp.com'))
