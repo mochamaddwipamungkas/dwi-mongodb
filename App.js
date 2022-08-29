@@ -1,14 +1,16 @@
 const express = require("express");
 const path = require('path')
 const app = express();
-const router = require('./routes');
-const log = require('./middlewares/logger')
+const productRouter = require('./app/products/routes');
+const productRouterV2 = require('./app/product_v2/routes');
+const logger = require('morgan');
 
-app.use(log);
+app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true })); //menangani body dgn middleware
-app.use(express.json())//menangani body dgn middleware
+app.use(express.json());//menangani body dgn middleware
 app.use('/public', express.static(path.join(__dirname, 'uploads'))); //menangani file static
-app.use(router);
+app.use('/api/v1', productRouter);
+app.use('/api/v2', productRouterV2);
 app.use((req, res, next) => {
     res.status(404);
     res.send({
@@ -16,5 +18,5 @@ app.use((req, res, next) => {
         message: 'Resourse ' + req.originalUrl + ' Not Found'
     })
 })
-// app.listen(3000, () => console.log('Server: http://localhost:3000'))
-app.listen(3000, () => console.log('Server: https://dwi-expressjs.herokuapp.com'))
+app.listen(process.env.PORT || 3000, () => console.log('Server: http://localhost:3000'))
+// app.listen(3000, () => console.log('Server: https://dwi-expressjs.herokuapp.com'))
