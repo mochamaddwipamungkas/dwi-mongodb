@@ -5,9 +5,11 @@ const productRouter = require('./app/products/routes');
 const productRouterV2 = require('./app/product_v2/routes');
 const logger = require('morgan');
 
+
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true })); //menangani body dgn middleware
 app.use(express.json());//menangani body dgn middleware
+app.use(productRouter)
 app.use('/public', express.static(path.join(__dirname, 'uploads'))); //menangani file static
 app.use('/api/v1', productRouter);
 app.use('/api/v2', productRouterV2);
@@ -15,7 +17,7 @@ app.use((req, res, next) => {
     res.status(404);
     res.send({
         status: 'failed',
-        message: 'Resourse ' + req.originalUrl + ' Not Found'
+        message: 'Resource ' + req.originalUrl + ' Not Found'
     })
 })
 app.listen(process.env.PORT || 3000, () => console.log('Server: http://localhost:3000'))
