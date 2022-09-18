@@ -37,7 +37,7 @@ const store = (req, res) => {
     const image = req.file;
     if (image) {
         const target = path.join(__dirname, '../../uploads', image.originalname);
-        fs.renameSync(image.path, target)
+        fs.renameSync(image.path, target);
 
         connection.query({
             sql: 'INSERT INTO product (users_id, name, price, stock, status, images_url) VALUES (?, ?, ?, ?, ?, ?)',
