@@ -12,7 +12,7 @@ const logger = require('morgan');
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true })); //menangani body dgn middleware
 app.use(express.json());//menangani body dgn middleware
-app.use(productRouterV3);
+// app.use(productRouter);
 app.use('/public', express.static(path.join(__dirname, 'uploads'))); //menangani file static
 // app.use('/api/v1', productRouter);
 // app.use('/api/v2', productRouterV2);
