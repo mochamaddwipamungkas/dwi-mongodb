@@ -1,12 +1,12 @@
 const { MongoClient } = require('mongodb');
 
-const url = 'mongodb://user_latihan:123456@localhost:27017?authSource=admin';
+const url = 'mongodb+srv://mochamaddwipamungkas:12131213@dwi-mongodbatlas.gywboqh.mongodb.net/eduwork-mongoose-routerv3?retryWrites=true&w=majority';
 const client = new MongoClient(url);
 
 (async () => {
     try {
         await client.connect();
-        console.log('koneksi ke mongodb berhasil');
+        console.log('koneksi ke mongodb berhasil (bukan mongoose)');
     } catch (e) {
         console.log(e);
     }
